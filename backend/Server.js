@@ -11,6 +11,7 @@ const login = require("./Controllers/login");
 const booking = require("./Controllers/booking");
 const auth = require("./Middleware/auth");
 const verifyToken = require("./Controllers/verify");
+const venue= require("./Controllers/venue");
 
 
 app.use(express.json());
@@ -63,6 +64,14 @@ app.get(
     auth,
     verifyToken
 );
+
+
+// Venue APIs
+app.post("/venue", auth, venue.createVenue);
+app.get("/venue", auth, venue.getAllVenues);
+app.get("/venue/:id", auth, venue.getVenueById);
+app.put("/venue/:id", auth, venue.updateVenue);
+app.delete("/venue/:id", auth, venue.deleteVenue);
 
 
 app.listen(process.env.PORT || 5000, () => {
