@@ -11,7 +11,7 @@ const login = require("./Controllers/login");
 const booking = require("./Controllers/booking");
 const auth = require("./Middleware/auth");
 const verifyToken = require("./Controllers/verify");
-const venue= require("./Controllers/venue");
+const court = require("./Controllers/court");
 
 
 app.use(express.json());
@@ -65,13 +65,39 @@ app.get(
     verifyToken
 );
 
+app.get("/courts", court.getCourts);
 
-// Venue APIs
-app.post("/venue", auth, venue.createVenue);
-app.get("/venue", auth, venue.getAllVenues);
-app.get("/venue/:id", auth, venue.getVenueById);
-app.put("/venue/:id", auth, venue.updateVenue);
-app.delete("/venue/:id", auth, venue.deleteVenue);
+app.get(
+    "/courts/venue/:venueId",
+    court.getVenueCourts
+);
+
+app.get(
+    "/courts/:id",
+    court.getCourtById
+);
+
+
+// Protected owner/admin
+app.post(
+    "/courts",
+    auth,
+    court.createCourt
+);
+
+
+app.put(
+    "/courts/:id",
+    auth,
+    court.updateCourt
+);
+
+
+app.delete(
+    "/courts/:id",
+    auth,
+    court.deleteCourt
+);
 
 
 app.listen(process.env.PORT || 5000, () => {
