@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const venueSchema = new Schema(
     {
         ownerId:{type:Schema.Types.ObjectId, ref:"User", required:true},
