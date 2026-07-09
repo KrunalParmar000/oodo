@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 const Schema = mongoose.Schema;
+=======
+>>>>>>> beab4eb62f6a56c1c7f9c16a39d3ef3eba8e9851
 const bookingSchema = new mongoose.Schema(
     {
         userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
