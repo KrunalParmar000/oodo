@@ -5,14 +5,13 @@ import type { Page } from '../../App'
 
 export default function RegisterPage({ nav }: { nav: (p: Page) => void }) {
   const [show, setShow] = useState(false)
-  const [role, setRole] = useState<'user' | 'owner'>('user')
+  const [role, setRole] = useState<'customer' | 'owner'>('customer')
   const [step, setStep] = useState(1)
 
   const [name, setName] = useState('')
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const [loading, setLoading] = useState(false)
-
 
 const handleRegister = async () => {
   if (!name || !email || !password) {
@@ -23,19 +22,20 @@ const handleRegister = async () => {
   try {
     setLoading(true);
 
-    const response = await fetch("http://localhost:8080/register", {
+    const response = await fetch("http://localhost:8000/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name,
+        fullname: name,
         email,
         password,
-        role: role.toUpperCase(),
+        role: role.toLowerCase(),
       }),
     });
-
+    
+    console.log(name, email, password, role);
     const data = await response.json();
 
     if (response.ok) {
@@ -140,8 +140,8 @@ const handleRegister = async () => {
             <div className="flex flex-col gap-5">
               <div className="grid gap-4">
                 {[
-                  { id: 'user' as const, label: 'Player / User', desc: 'Discover venues, book courts, join matches and manage your bookings.', icon: '🏃', color: 'blue' },
-                  { id: 'owner' as const, label: 'Facility Owner', desc: 'List your sports facility, manage courts, time slots, and track revenue.', icon: '🏟️', color: 'orange' },
+                  { id: 'owner' as const, label: 'Player / User', desc: 'Discover venues, book courts, join matches and manage your bookings.', icon: '🏃', color: 'blue' },
+                  { id: 'customer' as const, label: 'Facility Owner', desc: 'List your sports facility, manage courts, time slots, and track revenue.', icon: '🏟️', color: 'orange' },
                 ].map(r => (
                   <button
                     key={r.id}

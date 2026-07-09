@@ -89,6 +89,7 @@ export default function App() {
   ]
 
   return (
+    
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {/* Demo navigation */}
       <div style={{ background: '#0f172a', padding: '8px 16px', display: 'flex', gap: 24, overflowX: 'auto', flexShrink: 0, alignItems: 'center' }}>
