@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-const Schema = mongoose.Schema;
-=======
->>>>>>> 8cb7528e583a62589f087db8d0aacd764e437f10
+
 const bookingSchema = new mongoose.Schema(
     {
-        userId:{type:Schema.Types.ObjectId, ref:"User", required:true},
-        venueId:{type:Schema.Types.ObjectId, ref:"Venue", required:true},
-        courtId:{type:Schema.Types.ObjectId, ref:"Court", required:true},
+        userId:{type:mongoose.Schema.Types.ObjectId, ref:"User", required:true},
+        venueId:{type:mongoose.Schema.Types.ObjectId, ref:"Venue", required:true},
+        courtId:{type:mongoose.Schema.Types.ObjectId, ref:"Court", required:true},
         date:{type:Date, required:true},
         startTime:{type:String, required:true},
         endTime:{type:String, required:true},
