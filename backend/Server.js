@@ -11,6 +11,7 @@ const login = require("./Controllers/login");
 const booking = require("./Controllers/booking");
 const auth = require("./Middleware/auth");
 const verifyToken = require("./Controllers/verify");
+const court = require("./Controllers/court");
 
 
 app.use(express.json());
@@ -64,6 +65,39 @@ app.get(
     verifyToken
 );
 
+app.get("/courts", court.getCourts);
+
+app.get(
+    "/courts/venue/:venueId",
+    court.getVenueCourts
+);
+
+app.get(
+    "/courts/:id",
+    court.getCourtById
+);
+
+
+// Protected owner/admin
+app.post(
+    "/courts",
+    auth,
+    court.createCourt
+);
+
+
+app.put(
+    "/courts/:id",
+    auth,
+    court.updateCourt
+);
+
+
+app.delete(
+    "/courts/:id",
+    auth,
+    court.deleteCourt
+);
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server running on port 8000");
