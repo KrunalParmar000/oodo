@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-
+const cors = require("cors");
 
 
 
@@ -16,6 +16,28 @@ const court = require("./Controllers/court");
 
 app.use(express.json());
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    "http://localhost:3000"
+];
+
+
+app.use(
+    cors({
+        origin: function (origin, callback) {
+
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+
+        },
+        credentials: true,
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"]
+    })
+);
 
 // MongoDB connection
 connectDB();
