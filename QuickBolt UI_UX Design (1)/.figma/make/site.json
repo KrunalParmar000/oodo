@@ -1,0 +1,11 @@
+{
+  "title": "oddo",
+  "description": "Discover and book local sports venues with ease while facility owners manage bookings and schedules through a modern, user-friendly platform.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
