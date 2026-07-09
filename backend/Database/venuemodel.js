@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const venueSchema = new mongoose.Schema(
     {
-        ownerId:{type:Schema.Types.ObjectId, ref:"User", required:true},
+        ownerId:{type:mongoose.Schema.Types.ObjectId, ref:"User", required:true},
         name:{type:String, required:true},
         address:{street: String, city: String, state: String, zip: String},
         sports:{type:[String], required:true},
