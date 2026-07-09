@@ -4,9 +4,13 @@ require("dotenv").config();
 
 
 
+
 const connectDB = require("./Database/connect");
 const register = require("./Controllers/register");
 const login = require("./Controllers/login");
+const booking = require("./Controllers/booking");
+const auth = require("./Middleware/auth");
+
 
 
 app.use(express.json());
@@ -22,7 +26,36 @@ app.get("/", (req, res) => {
 // Register API
 app.post("/register", register);
 app.post("/login", login);
+// Customer creates booking
+app.post(
+    "/booking",
+    auth,
+    booking.createBooking
+);
 
+
+// Customer views own bookings
+app.get(
+    "/booking/user",
+    auth,
+    booking.getUserBookings
+);
+
+
+// Owner/Admin updates booking
+app.put(
+    "/booking/:id",
+    auth,
+    booking.updateBookingStatus
+);
+
+
+// Admin can view all
+app.get(
+    "/booking",
+    auth,
+    booking.getBookings
+);
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server running on port 8000");
 });
