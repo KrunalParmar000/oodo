@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bookingSchema = `new mongoose.Schema(
+const bookingSchema = new mongoose.Schema(
     {
         userId:{type:Schema.Types.ObjectId, ref:"User", required:true},
         venueId:{type:Schema.Types.ObjectId, ref:"Venue", required:true},
