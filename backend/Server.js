@@ -10,7 +10,7 @@ const register = require("./Controllers/register");
 const login = require("./Controllers/login");
 const booking = require("./Controllers/booking");
 const auth = require("./Middleware/auth");
-
+const verifyToken = require("./Controllers/verify");
 
 
 app.use(express.json());
@@ -56,6 +56,15 @@ app.get(
     auth,
     booking.getBookings
 );
+
+
+app.get(
+    "/verify",
+    auth,
+    verifyToken
+);
+
+
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server running on port 8000");
 });
